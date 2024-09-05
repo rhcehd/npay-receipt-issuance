@@ -1,21 +1,24 @@
 import os
+import time
+from datetime import datetime
 
+import pyautogui
 from selenium import webdriver
-from selenium.common import NoSuchElementException, StaleElementReferenceException
+from selenium.common import NoSuchElementException, StaleElementReferenceException, TimeoutException
 from selenium.webdriver import ActionChains, Keys
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait, POLL_FREQUENCY
+from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
-from datetime import datetime
-import pyautogui
-import time
 
 driver: webdriver.Chrome
+wait: WebDriverWait
 base_url = "https://order.pay.naver.com/home"
 download_path = os.path.join(os.path.join(os.getcwd(), "pdf"))
 
 def initialize_driver():
-    global driver
+    global driver, wait
     # Chrome 옵션 설정
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument("--start-maximized")
@@ -44,6 +47,7 @@ def initialize_driver():
     service = ChromeService(os.path.join(os.path.dirname(driver_path), "chromedriver.exe"))
     driver = webdriver.Chrome(service=service, options=chrome_options)
     driver.implicitly_wait(3)
+    wait = WebDriverWait(driver, 10)
 
 
 def start_driver(url: str):
@@ -82,7 +86,7 @@ def set_filter():
         return False
 
 
-def card_receipt():
+def credit_card_receipt():
     purchase_receipt_btn = driver.find_element(By.XPATH, "//*[@id='content']/div[1]/div/div[2]")
     purchase_receipt_btn.click()
     time.sleep(1)
@@ -113,8 +117,11 @@ def card_receipt():
     for card_receipt_btn in card_receipt_btns:
         card_receipt_btn.find_element(By.XPATH, "a").click()
         time.sleep(1)
-        print_btn = driver.find_element(By.XPATH, "//*[@id='receipt']/div/div[2]/div[2]/button")
-        print_btn.click()
+        # print_btn = driver.find_element(By.XPATH, "//*[@id='receipt']/div/div[2]/div[2]/button")
+        print_btns = driver.find_elements(By.TAG_NAME, "button")
+        for btn in print_btns:
+            if btn.text == "인쇄하기":
+                btn.click()
         time.sleep(1)
         pyautogui.write(message=f"{receipt_path}\\{date}_{price}_{receipt_count}")
         pyautogui.press('enter')
@@ -141,23 +148,24 @@ def cash_receipt():
     pyautogui.write(message=f"{receipt_path}\\{date}_{price}")
     pyautogui.press('enter')
     pyautogui.press('y')
-    time.sleep(1)
 
 
-def detail():
+def show_detail():
     receipt_btn = driver.find_element(By.XPATH, "//*[@id='content']/div/div[2]/div/div/button")
     receipt_btn.click()
     time.sleep(1)
     move_to_last_window()
+    time.sleep(1)
 
-    try:
-        card_receipt()
-    except NoSuchElementException:
-        print('no card receipt')
-        try:
-            cash_receipt()
-        except NoSuchElementException:
-            print('no cash receipt')
+    element_id = driver.find_element(By.XPATH, "/html/body/div[1]").get_attribute("id")
+    if "__next" in element_id:
+        cash_receipt()
+    elif "header" in element_id:
+        credit_card_receipt()
+    else:
+        NoSuchElementException(msg="detail: neither credit card nor cash")
+    time.sleep(1)
+
     driver.close()
     move_to_last_window()
 
@@ -171,23 +179,35 @@ def a():
 
     while True:
         try:
-            show_more_btn = driver.find_element(By.XPATH, "//*[@id='root']/div/div[2]/div/div[1]/div[3]/div[2]/button")
+            # show_more_btn = driver.find_element(By.XPATH, "//*[@id='root']/div/div[2]/div/div[1]/div[3]/div[2]/button")
+            show_more_btn = wait.until(EC.element_to_be_clickable((By.XPATH, "//*[@id='root']/div/div[2]/div/div[1]/div[3]/div[2]/button")))
             show_more_btn.click()
             time.sleep(1)
-        except NoSuchElementException:
+        except TimeoutException:
             break
-        except StaleElementReferenceException:
-            time.sleep(1)
+        # except NoSuchElementException:
+        #     break
+        # except StaleElementReferenceException:
+        #     time.sleep(1)
     time.sleep(1)
 
+    order_no_set = set()
     items = driver.find_elements(By.XPATH, "//*[@id='root']/div/div[2]/div/div[1]/div[3]/div[1]/ul/li")
+    time.sleep(1)
     for item in items:
         retry_count = 0
         is_failure = False
         while retry_count < 5:
             try:
-                time.sleep(1)
+                item_class_name = item.get_attribute('class')
+                if 'ListBanner' in item_class_name:
+                    break
                 item_detail = item.find_element(By.XPATH, "div/div[2]")
+                order_no = item_detail.find_element(By.XPATH, "div[2]/span[1]").text
+                if order_no in order_no_set:
+                    break
+                order_no_set.add(order_no)
+                time.sleep(1)
                 ActionChains(driver) \
                     .key_down(Keys.CONTROL) \
                     .click(item_detail) \
@@ -195,24 +215,23 @@ def a():
                     .perform()
                 time.sleep(1)
                 move_to_last_window()
-                detail()
+                time.sleep(1)
+                show_detail()
                 time.sleep(1)
                 driver.close()
                 move_to_last_window()
+                time.sleep(1)
             except NoSuchElementException as e:
                 print(e)
-                class_name = item.get_attribute('class')
-                if 'ListBanner' in class_name:
-                    break
-                else:
-                    is_failure = True
+                is_failure = True
             except StaleElementReferenceException as e:
                 print(e)
                 is_failure = True
             finally:
-                if len(driver.window_handles) != 1:
+                while len(driver.window_handles) != 1:
                     driver.close()
                     move_to_last_window()
+                    time.sleep(1)
                 if is_failure:
                     is_failure = False
                     retry_count += 1

@@ -6,39 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="52a1458c-c431-4e00-9836-a9629b6eddc9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdf/0209_32,000/0209_32,000_1.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdf/0209_32,000/0209_32,000_2.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdf/0314_18,900/0314_18,900_1.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdf/0314_18,900/0314_18,900_2.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdf/0409_77,400/0409_77,400_1.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdf/0409_77,400/0409_77,400_2.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdf/0516_9,000/0516_9,000_1.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdf/0516_9,000/0516_9,000_2.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdf/0523_20,000/0523_20,000_1.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdf/0523_20,000/0523_20,000_2.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdf/0718_18,490/0718_18,490_1.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdf/0718_18,490/0718_18,490_2.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdf/0813_15,200/0813_15,200.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdf/0908_12,400/0908_12,400_1.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdf/0908_12,400/0908_12,400_2.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdf/0910_15,000/0910_15,000.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdf/0921_1,000/0921_1,000.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdf/0921_31,800/0921_31,800.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdf/0922_12,400/0922_12,400_1.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdf/0922_12,400/0922_12,400_2.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdf/0930_1,000/0930_1,000.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdf/0930_14,000/0930_14,000.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdf/0930_67,600/0930_67,600.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdf/1030_62,500/1030_62,500_1.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdf/1030_62,500/1030_62,500_2.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdf/1119_15,000/1119_15,000.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdf/1119_37,600/1119_37,600_1.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdf/1119_37,600/1119_37,600_2.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdf/1206_10,000/1206_10,000_1.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdf/1206_10,000/1206_10,000_2.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdf/1208_15,000/1208_15,000.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdf/1220_21,400/1220_21,400_1.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdf/1220_21,400/1220_21,400_2.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/npay-receipt-issuance.py" beforeDir="false" afterPath="$PROJECT_DIR$/npay-receipt-issuance.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,18 +34,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.npay-receipt-issuance.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/lhs94/Desktop/projects/python/npay-receipt-issuance&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.npay-receipt-issuance.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/lhs94/Desktop/projects/python/npay-receipt-issuance",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -88,5 +56,16 @@
       <updated>1721738413535</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/npay-receipt-issuance.py</url>
+          <line>157</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
